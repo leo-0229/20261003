@@ -53,3 +53,16 @@
   .actions{grid-template-columns:1fr}
   #modes button{font-size:11px}
 }
+
+@media(max-width:640px){
+  html,
+  body{max-width:100%;overflow-x:hidden}
+  main,
+  .layout,
+  section,
+  aside,
+  article{max-width:100%;min-width:0}
+  #parts{max-width:100%;overscroll-behavior-x:contain}
+  #parts button{flex-basis:68%}
+  .navigation{max-width:100vw}
+}
