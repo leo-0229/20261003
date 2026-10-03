@@ -1,0 +1,48 @@
+﻿<!doctype html><html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>도덕링고</title><link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <b>안성규 선생님 <span>수행평가 대비</span></b>
+        <small>보왕삼매론 + 주자십회 + 겸손의 기도문</small>
+    </header>
+    <main>
+        <div class="intro">
+            <small>도덕 안성규 선생님 수행평가 대비</small>
+            <h1>읽고, 떠올리고,<br>백지에 써 보세요.</h1>
+            <p>긴 글도 한 부분씩 익히면 기억할 수 있어요.</p>
+        </div>
+        <div class="layout">
+            <aside>
+                <h2>학습할 글</h2>
+                <div id="books"></div>
+                <p id="progress"></p>
+                <progress id="bar" max="24"></progress>
+                <nav id="parts" aria-label="학습 부분"></nav>
+                <small id="storage">진도와 답안은 이 브라우저에 저장돼요.</small>
+                <button id="clear-cache" class="danger">캐시 데이터 삭제</button>
+            </aside>
+            <section>
+                <div class="heading">
+                    <h2 id="title"></h2>
+                    <span id="count"></span>
+                </div>
+                <div id="modes"></div>
+                <article>
+                    <p id="instruction"></p>
+                    <div id="content"></div>
+                    <div id="feedback" role="status" aria-live="polite"></div>
+                </article>
+                <div class="navigation">
+                    <button id="prev">← 이전</button>
+                    <label><input type="checkbox" id="done"> 이 부분을 외웠어요</label>
+                    <button id="next">다음 →</button></div><p class="tip">읽기 → 빈칸 연습 → 안 보고 쓰기 순서로 익힌 뒤, 전체 백지 쓰기에 도전하세요. 마지막에는 실제 종이에 써 보세요.</p>
+                </section>
+        </div>
+    </main>
+    <footer>© 2026 정하준. Built with AI.</footer></body></html>
+
