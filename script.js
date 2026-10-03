@@ -79,7 +79,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{$('#s
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function btn(text,fn,cls){const b=el('button',text,cls);b.onclick=fn;return b;}
 function partButton(index,active,done,fn){
-const b=el('button',undefined,`part-card${active?' active':''}`);
+const b=el('button',undefined,`part-card${active?' selected':''}`);
 b.onclick=fn;
 b.setAttribute('aria-label',`${index+1}번 암기 카드${done?' 완료':''}`);
 b.append(el('span',String(index+1).padStart(2,'0'),'part-number'),el('span',done?'완료':'연습','part-status'));

@@ -84,3 +84,7 @@
 .part-card.active{background:#f7faf4!important;color:var(--ink)!important;border-color:var(--green)!important;box-shadow:0 0 0 2px rgba(40,115,79,.14)}
 .part-card.active .part-number{color:var(--ink)!important}
 .part-card.active .part-status{color:var(--green)!important;background:#fff!important;border-color:#cfe0d3!important}
+
+.part-card.selected{background:#f7faf4!important;color:var(--ink)!important;border-color:var(--green)!important;box-shadow:0 0 0 2px rgba(40,115,79,.16)}
+.part-card.selected .part-number{color:var(--ink)!important}
+.part-card.selected .part-status{color:var(--green)!important;background:#fff!important;border-color:#cfe0d3!important}
