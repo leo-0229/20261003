@@ -66,3 +66,21 @@
   #parts button{flex-basis:68%}
   .navigation{max-width:100vw}
 }
+
+.part-card{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid transparent;background:#f7faf4!important;border-radius:12px!important;padding:10px 12px!important;text-align:left!important}
+.part-card.active{border-color:var(--green);box-shadow:0 0 0 1px rgba(40,115,79,.12)}
+.part-number{font-size:18px;font-weight:800;letter-spacing:.02em;color:var(--ink)}
+.part-status{font-size:11px;color:#748174;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 8px;white-space:nowrap}
+.part-card.active .part-number,.part-card.active .part-status{color:#fff}
+.part-card.active .part-status{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.45)}
+
+@media(max-width:640px){
+  #parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;padding-bottom:0}
+  #parts .part-card{flex:initial;min-height:54px;padding:10px!important}
+  .part-number{font-size:17px}
+  .part-status{font-size:10px;padding:3px 7px}
+}
+
+.part-card.active{background:#f7faf4!important;color:var(--ink)!important;border-color:var(--green)!important;box-shadow:0 0 0 2px rgba(40,115,79,.14)}
+.part-card.active .part-number{color:var(--ink)!important}
+.part-card.active .part-status{color:var(--green)!important;background:#fff!important;border-color:#cfe0d3!important}

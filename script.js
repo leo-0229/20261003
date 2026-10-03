@@ -78,6 +78,13 @@ try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&typeof saved==='
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{$('#storage').textContent='브라우저에서 저장이 제한돼요. 현재 화면에서는 계속 연습할 수 있어요.';}}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function btn(text,fn,cls){const b=el('button',text,cls);b.onclick=fn;return b;}
+function partButton(index,active,done,fn){
+const b=el('button',undefined,`part-card${active?' active':''}`);
+b.onclick=fn;
+b.setAttribute('aria-label',`${index+1}번 암기 카드${done?' 완료':''}`);
+b.append(el('span',String(index+1).padStart(2,'0'),'part-number'),el('span',done?'완료':'연습','part-status'));
+return b;
+}
 const key=()=>`${state.book}-${state.part}`,draftKey=()=>state.mode==='all'?`${state.book}-all`:key();
 const norm=s=>s.normalize('NFC').replace(/[\s\p{P}]/gu,'');
 const CHOSEONG='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
@@ -97,12 +104,12 @@ function switchMode(mode){state.mode=mode;save();render();}
 function render(){
 const book=books[state.book];
 $('#books').replaceChildren(...books.map((b,i)=>{const n=btn(b.title,()=>{state.book=i;state.part=0;state.blankRound=0;save();render();},i===state.book?'active':'');n.setAttribute('aria-pressed',i===state.book);return n;}));
-$('#parts').replaceChildren(...book.parts.map((p,i)=>{const n=btn(`${state.done[`${state.book}-${i}`]===true?'✓':i+1}  ${p.split('\n')[0]}`,()=>{state.part=i;state.blankRound=0;if(state.mode==='all')state.mode='read';save();render();},i===state.part?'active':'');if(i===state.part)n.setAttribute('aria-current','step');return n;}));
+$('#parts').replaceChildren(...book.parts.map((_,i)=>{const done=state.done[`${state.book}-${i}`]===true;const n=partButton(i,i===state.part,done,()=>{state.part=i;state.blankRound=0;if(state.mode==='all')state.mode='read';save();render();});if(i===state.part)n.setAttribute('aria-current','step');return n;}));
 const count=books.reduce((sum,b,i)=>sum+b.parts.filter((_,j)=>state.done[`${i}-${j}`]===true).length,0);$('#progress').textContent=`암기 완료 ${count} / 24` ;$('#bar').value=count;
-$('#title').textContent=`${book.title} · ${state.mode==='all'?'전체 백지 쓰기':`${state.part+1}번째 부분`}`;$('#count').textContent=state.mode==='all'?'전체 연습':`${state.part+1} / ${book.parts.length}`;
+$('#title').textContent=`${book.title} · ${state.mode==='all'?'전체 백지 쓰기':`암기 카드 ${String(state.part+1).padStart(2,'0')}`}`;$('#count').textContent=state.mode==='all'?'전체 연습':`${String(state.part+1).padStart(2,'0')} / ${book.parts.length}`;
 $('#modes').replaceChildren(...[['read','① 읽기'],['blank','② 빈칸 연습'],['write','③ 안 보고 쓰기'],['all','전체 백지 쓰기']].map(([m,t])=>{const n=btn(t,()=>switchMode(m),m===state.mode?'active':'');n.setAttribute('aria-pressed',m===state.mode);return n;}));
 $('#prev').disabled=state.part===0||state.mode==='all';$('#next').disabled=state.part===book.parts.length-1||state.mode==='all';$('#done').checked=state.done[key()]===true;$('#done').disabled=state.mode==='all';$('#content').replaceChildren();$('#feedback').replaceChildren();
-if(state.mode==='read'){$('#instruction').textContent='소리 내어 읽고, 눈을 감아 한 문장씩 떠올려 보세요.';$('#content').append(el('div',target(),'passage'),btn('빈칸으로 확인하기 →',()=>switchMode('blank'),'primary actions'));}
+if(state.mode==='read'){$('#instruction').textContent='소리 내어 읽고, 한 문장씩 떠올려 보세요.';$('#content').append(el('div',target(),'passage'),btn('빈칸으로 확인하기 →',()=>switchMode('blank'),'primary actions'));}
 else if(state.mode==='blank')blanks();else writing();
 }
 function blanks(){
