@@ -88,3 +88,5 @@
 .part-card.selected{background:#f7faf4!important;color:var(--ink)!important;border-color:var(--green)!important;box-shadow:0 0 0 2px rgba(40,115,79,.16)}
 .part-card.selected .part-number{color:var(--ink)!important}
 .part-card.selected .part-status{color:var(--green)!important;background:#fff!important;border-color:#cfe0d3!important}
+.reading-reference{font-size:14px;line-height:1.8;color:var(--green);background:#f5f8f0;border-radius:9px;padding:12px 16px;margin:0 0 20px;word-break:keep-all}[hidden]{display:none!important}
+.reading-options{display:flex;flex-wrap:nowrap;align-items:center;overflow-x:auto}.reading-options>*{flex-shrink:0}.reading-options .toggle{grid-column:auto;white-space:nowrap}.actions.reading-options .toggle{font-size:12px}.actions+.reading-reference{margin-top:16px}
